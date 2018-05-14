@@ -1,4 +1,4 @@
-const Wallet = require('./Wallet')
+const Wallet = require('./EtherWallet')
 
 const privateKey = '0x495d5c34c912291807c25d5e8300d20b749f6be44a178d5c50f167d495f3315a'
 
