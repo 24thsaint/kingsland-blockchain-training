@@ -1,0 +1,11 @@
+1. Enter your favorite graphics card (GPU). 
+	1 - GeForce GTX 1080 Ti Graphics Cards | NVIDIA GeForce
+
+2. Change the hash rate and power consumption options if necessary. 
+
+3. Enter your electricity costs.
+	Electricity cost in Philippine Peso: 11.3442php
+	Electricity cost in USD: $0.22
+
+4. Which cryptocurrency you would mine and why?
+	I would mine Ravencoin. Because I would stand in a $10.39 revenue for a total profit of $6.38, the most profitable cryptocurrency that whattomine.com has advised.
