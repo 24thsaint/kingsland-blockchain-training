@@ -1,0 +1,1 @@
+Unable to proceed due to "Not Connected" error in the Electrum testnet client.

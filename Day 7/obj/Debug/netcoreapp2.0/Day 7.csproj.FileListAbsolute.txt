@@ -1,0 +1,11 @@
+F:\Blockchain Training Projects\blockchain-training\Day 7\bin\Debug\netcoreapp2.0\Day 7.deps.json
+F:\Blockchain Training Projects\blockchain-training\Day 7\bin\Debug\netcoreapp2.0\Day 7.runtimeconfig.json
+F:\Blockchain Training Projects\blockchain-training\Day 7\bin\Debug\netcoreapp2.0\Day 7.runtimeconfig.dev.json
+F:\Blockchain Training Projects\blockchain-training\Day 7\bin\Debug\netcoreapp2.0\Day 7.dll
+F:\Blockchain Training Projects\blockchain-training\Day 7\bin\Debug\netcoreapp2.0\Day 7.pdb
+F:\Blockchain Training Projects\blockchain-training\Day 7\obj\Debug\netcoreapp2.0\Day 7.csprojAssemblyReference.cache
+F:\Blockchain Training Projects\blockchain-training\Day 7\obj\Debug\netcoreapp2.0\Day 7.csproj.CoreCompileInputs.cache
+F:\Blockchain Training Projects\blockchain-training\Day 7\obj\Debug\netcoreapp2.0\Day 7.AssemblyInfoInputs.cache
+F:\Blockchain Training Projects\blockchain-training\Day 7\obj\Debug\netcoreapp2.0\Day 7.AssemblyInfo.cs
+F:\Blockchain Training Projects\blockchain-training\Day 7\obj\Debug\netcoreapp2.0\Day 7.dll
+F:\Blockchain Training Projects\blockchain-training\Day 7\obj\Debug\netcoreapp2.0\Day 7.pdb
