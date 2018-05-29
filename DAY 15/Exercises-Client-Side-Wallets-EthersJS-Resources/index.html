@@ -24,6 +24,7 @@
     <a href="#" id="linkSendTransaction" class="after-login">Send Transaction</a>
     <a href="#" id="linkDelete" class="after-login">Delete Wallet</a>
     <a href="#" id="linkExport" class="after-login">Export Wallet</a>
+    <a href="#" id="linkContract" class="after-login">Contract</a>
 </header>
 
 <main>
@@ -119,6 +120,22 @@
             <textarea id="currentWalletToExport" readonly="true"></textarea>
             <button id="exportWalletForReal">Export</button>
         </div>
+    </section>
+
+    <section id="viewContract">
+        <h1>Contract</h1>
+        <p>View Contract</p>
+        <div>
+            <div><span>Contract address: </span><input type="text" id="contractAddress" /></div>
+            <div><span>ABI: </span><textarea type="text" id="textareaContractABI"></textarea></div>
+            <button id="contractAddressInitialize">Verify Contract</button>
+        </div>
+        <hr />
+        <div>
+            <select id="contractMethods"></select>
+            <div id="methodExtension"></div>
+        </div>
+        <button id="contractExecute">Execute</button>
     </section>
 </main>
 

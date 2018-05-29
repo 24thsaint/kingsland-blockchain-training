@@ -54,6 +54,14 @@ contract CompanyShares {
         require(msg.sender == owner);
         _;
     }
+
+    function setPricePerShare(uint _newSharePrice) public onlyOwner {
+        pricePerShare = _newSharePrice * 1 szabo;
+    }
+
+    function setDividend(uint _dividend) public onlyOwner {
+        dividend = _dividend;
+    }
     
     function getShareHolderCount() view public onlyOwner returns (uint) {
         return shareHolders.length;

@@ -3,6 +3,7 @@ $(document).ready(function () {
     const provider = ethers.providers.getDefaultProvider('ropsten');
 
     let wallets = {};
+    let contract;
 
     showView("viewHome");
 
@@ -59,6 +60,12 @@ $(document).ready(function () {
         $('#currentWalletToExport').val(window.localStorage.JSON);
     });
 
+    $('#linkContract').click(function() {
+        showView('viewContract');
+        $('#contractAddress').val('0x77236e828e5bd7302e0a4218372950fed7a0008a');
+        $('#textareaContractABI').val('[{"constant":false,"inputs":[],"name":"decrease","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"increase","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getCount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]');
+    });
+
     $('#buttonGenerateNewWallet').click(generateNewWallet);
     $('#buttonOpenExistingWallet').click(openWalletFromMnemonic);
     $('#buttonUploadWallet').click(openWalletFromFile);
@@ -68,6 +75,8 @@ $(document).ready(function () {
     $('#buttonSignTransaction').click(signTransaction);
     $('#buttonSendSignedTransaction').click(sendSignedTransaction);
     $('#exportWalletForReal').click(exportWalletToJSONFile);
+    $('#contractAddressInitialize').click(initializeContract);
+    $('#contractExecute').click(executeContract);
 
     $('#linkDelete').click(deleteWallet);
 
@@ -395,13 +404,38 @@ $(document).ready(function () {
 
         const fileDownloader = document.createElement("a");
 
-        fileDownloader.download = `UTC--${new Date().toISOString()}--${wallet.address}`;
+        fileDownloader.download = `UTC--${new Date().toUTCString()}--${wallet.address}`;
         fileDownloader.href = URL.createObjectURL(blob);
         document.body.appendChild(fileDownloader);
 
         fileDownloader.click();
 
         document.body.removeChild(fileDownloader);
+    }
+
+    function initializeContract() {
+        const contractAddress = $('#contractAddress').val();
+        const contractABI = $('#textareaContractABI').val();
+
+        connectContract(contractAddress, contractABI);
+    }
+
+    function connectContract(contractAddress, contractABI) {
+        const abiJson = JSON.parse(contractABI);
+        const rawContract = new ethers.Contract(contractAddress, abiJson, provider);
+        contract = rawContract;
+
+        $('#contractMethods').empty();
+        
+        for (let index = 0; index < abiJson.length; index++) {
+            $('#contractMethods').append(`<option id=${abiJson[index].name}>${abiJson[index].name}()</option>`);
+        }
+    }
+
+    async function executeContract() {
+        const methodName = $('#contractMethods option:selected').attr('id');
+        const response = await contract[methodName]();
+        console.log(response);
     }
 });
 
