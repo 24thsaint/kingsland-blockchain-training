@@ -1,6 +1,13 @@
 pragma solidity ^0.4.21;
 
-contract LemonToken {
+contract ERC20Basic {
+    function totalSupply() public view returns (uint256);
+    function balanceOf(address who) public view returns (uint256);
+    function transfer(address to, uint256 value) public returns (bool);
+    event Transfer(address indexed from, address indexed to, uint256 value);
+}
+
+contract LemonToken is ERC20Basic {
     string public name;
     string public symbol;
     uint public decimals;
@@ -30,8 +37,6 @@ contract LemonToken {
         totalSupply += value;
         emit Transfer(msg.sender, to, value);
     }
-    
-    event Transfer(address indexed from, address indexed to, uint256 value);
 }
 
 contract LemonCrowdsale {
