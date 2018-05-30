@@ -14,7 +14,19 @@ const timeTravel = function(time) {
     });
 }
 
-contract("PublicArticle", function(accounts) {
+contract("PublicArticle", function(accounts) { 
+    it("should set the article name and text correctly", async function() {
+        let pubart = await PublicArticle.deployed();
+        await pubart.setArticleText("article text")
+        await pubart.setArticleName("article name");
+        await pubart.setDuration(60 * 60);
+
+        let name = await pubart.getArticleName();
+        let text = await pubart.getArticleText();
+        assert.equal(name, "article name");
+        assert.equal(text, "article text");
+    });
+
     it("should work before it expires", async function() {
         let pubart = await PublicArticle.deployed();
 
@@ -41,5 +53,5 @@ contract("PublicArticle", function(accounts) {
         }
 
         throw new Error("Article failed to expire");
-    })
+    });
 });
