@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Document Registry DApp</title>
+    <link rel="stylesheet" type="text/css" href="./document-registry.css" />
+    <script src="https://unpkg.com/ipfs-api/dist/index.js"></script>
+    <script src="./lib/jquery-3.1.1.min.js"></script>
+    <script src="./lib/cryptojs-hmac-sha256.js"></script>
+    <script src="./document-registry.js"></script>
+</head>
+
+<body>
+    <header id="menu">
+        <a href="#" id="linkHome">Home</a>
+        <a href="#" id="linkSubmitDocument">Submit Document</a>
+        <a href="#" id="linkGetDocuments">View Documents</a>
+    </header>
+
+    <main>
+        <section id="loadingBox">Loading ...</section>
+
+        <section id="infoBox">
+            <header>x</header>
+            <p>Info</p>
+        </section>
+
+        <section id="errorBox">
+            <header>x</header>
+            <p>Error</p>
+        </section>
+
+        <section id="viewHome">
+            <h1>Document Registry</h1>
+            Welcome to the "Document Registry" DApp. This distributed app runs on the Ethereum blockchain network and holds a registry
+            of documents as Solidity smart contract.
+            <ul>
+                <li>The registry keeps images of documents along with their publish date.</li>
+                <li>
+                    <b>Contract owner</b> can submit new documents to be stored on the blockchain.</li>
+                <li>
+                    <b>Users</b> can view the existence of certain documents in the registry.</li>
+            </ul>
+        </section>
+
+        <section id="viewSubmitDocument">
+            <h1>Submit a Document</h1>
+            <p>Contract owners can register (upload) new documents to the "Document Registry" smart contract on the Ethereum
+                blockchain decentralized network.</p>
+            <input type="file" id="documentForUpload" />
+            <br/>
+            <input type="button" id="documentUploadButton" value="Submit" />
+        </section>
+
+        <section id="viewGetDocuments">
+            <h1>View Documents</h1>
+            <p>Blockchain users can view documents in the registry on the Ethereum network.</p>
+        </section>
+    </main>
+
+    <footer>Document Registry - JavaScript & Ethereum DApp</footer>
+</body>
+
+</html>

@@ -128,14 +128,17 @@
         <div>
             <div><span>Contract address: </span><input type="text" id="contractAddress" /></div>
             <div><span>ABI: </span><textarea type="text" id="textareaContractABI"></textarea></div>
-            <button id="contractAddressInitialize">Verify Contract</button>
+            <button id="contractAddressInitialize">Initialize Contract</button>
         </div>
         <hr />
         <div>
             <select id="contractMethods"></select>
             <div id="methodExtension"></div>
         </div>
+        Wallet password: <input type="password" id="contractPassword" /><br /> 
         <button id="contractExecute">Execute</button>
+        <hr />
+        <div id="contractResult"></div>
     </section>
 </main>
 

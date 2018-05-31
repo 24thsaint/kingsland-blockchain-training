@@ -433,10 +433,55 @@ $(document).ready(function () {
     }
 
     async function executeContract() {
+
+        let walletTx;
+        let json = window.localStorage.JSON;
+        let password = $('#contractPassword').val();
+
+        try {
+            let wallet = await decryptWallet(json, password);
+            walletTx = new ethers.Wallet(wallet.privateKey, provider);
+        } catch (e) {
+            showError(e);
+            return;
+        } finally {
+            $('#passwordSendTransaction').val();
+            hideLoadingBar();
+        }
+
+        $('#contractResult').empty();
+        const contractAddress = $('#contractAddress').val();
+        const contractABI = $('#textareaContractABI').val();
+        let contractTx = new ethers.Contract(contractAddress, contractABI, walletTx);
+
+        const abiJson = JSON.parse(contractABI);
+
         const methodName = $('#contractMethods option:selected').attr('id');
-        const response = await contract[methodName]();
-        console.log(response);
+        const exactMethod = abiJson.filter(res => res.name === methodName)[0];
+
+        showInfo("Please wait while your transaction is being processed...");
+
+        if (exactMethod.constant && exactMethod.stateMutability === 'view') {
+            try {
+                const response = await contractTx[methodName]();
+                $('#contractResult').html('RESULT: ' + response.toNumber());
+                showInfo("Contract communication successful! See result.");
+            } catch (err) {
+                showError(err);
+            }
+            return;
+        }
+
+        if (!exactMethod.constant && exactMethod.stateMutability === 'nonpayable') {
+            try {
+                const response = await contractTx[methodName]();
+                $('#contractResult').html(`TRANSACTION SUCCESSFUL! <a href="https://ropsten.etherscan.io/tx/${response.hash}">View transaction here</a>.`);
+                showInfo(`TRANSACTION SUCCESSFUL! <a href="https://ropsten.etherscan.io/tx/${response.hash}">View transaction here</a>.`);
+            } catch (err) {
+                showError(err);
+            }
+            return;
+        }
+        
     }
 });
-
-// empower lounge alpha spatial work front anxiety pledge awful cause letter paper
