@@ -1,8 +1,7 @@
 const Web3 = require('web3');
 const solc = require('solc');
 const fs = require('fs-extra');
-// const provider = 'https://ropsten.infura.io/TsF0xHHbgbCoGTyEBO4A';
-const provider = 'https://infuranet.infura.io/TsF0xHHbgbCoGTyEBO4A';
+const provider = 'https://ropsten.infura.io/TsF0xHHbgbCoGTyEBO4A';
 let web3 = new Web3(new Web3.providers.HttpProvider(provider));
 
 const privateKey = '0xc7bad76b1c7a741f42748ca5d4012fd9fae5edd40af90b7bcd5b93238e67ae72';
@@ -14,11 +13,12 @@ function readFile(fileName) {
 function compileContract(fileName, contractName) {
     let contractStr = readFile(fileName);
     let output = solc.compile(contractStr);
+    console.log(output);
     return output.contracts[':' + contractName];
 }
 
 async function deployContract(privateKey, filePath, contractName) {
-    // web3.eth.accounts.wallet.add(privateKey);
+    web3.eth.accounts.wallet.add(privateKey);
 
     let compiledContract = compileContract(filePath, contractName);
     let abi = compiledContract.interface;
@@ -32,8 +32,8 @@ async function deployContract(privateKey, filePath, contractName) {
 
     const result = await contract.deploy().send();
     console.log(result);
+    console.log('===============================================    ')
+    console.log('Contract created at: ' + result.options.address);
 }
 
 deployContract(privateKey, './ArrayOfFacts.sol', 'ArrayOfFacts');
-// const x = compileContract('./ArrayOfFacts.sol', 'ArrayOfFacts');
-// console.log(x.interface);
