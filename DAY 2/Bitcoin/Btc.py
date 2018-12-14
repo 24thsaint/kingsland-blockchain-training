@@ -9,7 +9,9 @@ def pubkey_to_address(pubKey: str, magic_byte = 0) -> str:
   pubKeyBytes = binascii.unhexlify(pubKey)
   sha256val = hashlib.sha256(pubKeyBytes).digest()
   ripemd160val = hashlib.new('ripemd160', sha256val).digest()
+  print (binascii.hexlify(sha256val))
   print (binascii.hexlify(ripemd160val))
+  print (magic_byte)
   return bitcoin.bin_to_b58check(ripemd160val, magic_byte)
 
 privateKeyWIF = "5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ"
